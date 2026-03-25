@@ -16,16 +16,19 @@ interface NewsForm {
   content: string;
   media_type: 'video' | 'image' | 'text';
   media_url: string;
+  download_url: string;
   is_public: boolean;
 }
 
-const emptyForm: NewsForm = { title: '', content: '', media_type: 'text', media_url: '', is_public: true };
+const emptyForm: NewsForm = { title: '', content: '', media_type: 'text', media_url: '', download_url: '', is_public: true };
 
 const AdminNews = () => {
   const queryClient = useQueryClient();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editId, setEditId] = useState<string | null>(null);
   const [form, setForm] = useState<NewsForm>(emptyForm);
+  const [newsFile, setNewsFile] = useState<File | null>(null);
+  const [uploadingFile, setUploadingFile] = useState(false);
 
   const { data: news } = useQuery({
     queryKey: ['admin-news'],
@@ -37,18 +40,35 @@ const AdminNews = () => {
 
   const saveMutation = useMutation({
     mutationFn: async () => {
+      let downloadUrl: string | null = form.download_url || null;
+
+      if (newsFile) {
+        setUploadingFile(true);
+        try {
+          const extension = newsFile.name.split('.').pop() || 'bin';
+          const filePath = `news/${crypto.randomUUID()}.${extension}`;
+          const { error: uploadError } = await supabase.storage.from('downloads').upload(filePath, newsFile);
+          if (uploadError) throw uploadError;
+          const { data: fileData } = supabase.storage.from('downloads').getPublicUrl(filePath);
+          downloadUrl = fileData.publicUrl;
+        } finally {
+          setUploadingFile(false);
+        }
+      }
+
       const payload = {
         title: form.title,
         content: form.content || null,
         media_type: form.media_type,
         media_url: form.media_type !== 'text' ? (form.media_url || null) : null,
+        download_url: downloadUrl,
         is_public: form.is_public,
       };
       if (editId) {
-        const { error } = await supabase.from('news').update(payload).eq('id', editId);
+        const { error } = await supabase.from('news').update(payload as any).eq('id', editId);
         if (error) throw error;
       } else {
-        const { error } = await supabase.from('news').insert(payload);
+        const { error } = await supabase.from('news').insert(payload as any);
         if (error) throw error;
       }
     },
@@ -58,6 +78,7 @@ const AdminNews = () => {
       setDialogOpen(false);
       setEditId(null);
       setForm(emptyForm);
+      setNewsFile(null);
       toast.success(editId ? 'News updated!' : 'News posted!');
     },
     onError: (e: Error) => toast.error(e.message),
@@ -83,12 +104,13 @@ const AdminNews = () => {
       content: item.content || '',
       media_type: item.media_type || 'text',
       media_url: item.media_url || '',
+      download_url: (item as any).download_url || '',
       is_public: item.is_public,
     });
     setDialogOpen(true);
   };
 
-  const openNew = () => { setEditId(null); setForm(emptyForm); setDialogOpen(true); };
+  const openNew = () => { setEditId(null); setForm(emptyForm); setNewsFile(null); setDialogOpen(true); };
   const updateField = (field: keyof NewsForm, value: any) => setForm(f => ({ ...f, [field]: value }));
 
   return (
@@ -144,13 +166,30 @@ const AdminNews = () => {
               />
             )}
 
+            <Input
+              type="file"
+              onChange={(e) => setNewsFile(e.target.files?.[0] || null)}
+              className="bg-muted"
+            />
+            <Input
+              placeholder="Or paste download URL (optional)"
+              value={form.download_url}
+              onChange={e => updateField('download_url', e.target.value)}
+              className="bg-muted"
+            />
+            {form.download_url && (
+              <a href={form.download_url} target="_blank" rel="noopener noreferrer" className="text-xs text-primary underline">
+                Current download file
+              </a>
+            )}
+
             <div className="flex items-center gap-3">
               <Switch checked={form.is_public} onCheckedChange={v => updateField('is_public', v)} />
               <span className="text-sm text-foreground">{form.is_public ? 'Public' : 'Private'}</span>
             </div>
 
-            <Button onClick={() => saveMutation.mutate()} disabled={!form.title.trim() || saveMutation.isPending} className="w-full">
-              {saveMutation.isPending ? 'Saving...' : editId ? 'Update News' : 'Post News'}
+            <Button onClick={() => saveMutation.mutate()} disabled={!form.title.trim() || saveMutation.isPending || uploadingFile} className="w-full">
+              {saveMutation.isPending || uploadingFile ? 'Saving...' : editId ? 'Update News' : 'Post News'}
             </Button>
           </div>
         </DialogContent>
