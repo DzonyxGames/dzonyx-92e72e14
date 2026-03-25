@@ -1,30 +1,98 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- TODO: Set the document title to the name of your application -->
-    <title>DZONYX - Horror Game Studio</title>
-    <meta name="description" content="DZONYX is a horror game studio creating immersive and disturbing gaming experiences. Explore our games, support us, and share your dark ideas.">
-    <meta name="author" content="DZONYX" />
-
-    
-    
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/356e9080-ebb5-4f32-be2a-67808136b442?Expires=1774436276&amp;GoogleAccessId=go-api-on-aws%40gpt-engineer-390607.iam.gserviceaccount.com&amp;Signature=N%2BVkYA3pBsFo2RaR7IvLPRIxFi%2BF0eedQ0yrEu4wnQuJ0aeGdUDf7GB0sUoBrWHd5CxHCI6xejHykBHhYKE%2B4j9rH8srmk%2FXIojEro4Le3369jGxEZZOuow6z%2FYY%2BBIOtfWh7l5%2Bk9VghOoiyrSTtwPqjedJkP2PXXguAzA6ZDHp2PxC8gnALFxllz%2FKHxHNlMl1qLQZ1S4GsXk9mKvFmCGYRVHCjYGI6JV1QX19sTR1j6Oml9Jgl8ko2ckmE2Ftcy%2B4eFi5EFKHLx0nJlzbwOlDNJOrzXAbXxZkR6j1D3j9MMME7ouuSfJ4xJSgXEVUhFTPnqaV%2BJY9ixF5aAVwyw%3D%3D">
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@Lovable" />
-    <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/356e9080-ebb5-4f32-be2a-67808136b442?Expires=1774436276&amp;GoogleAccessId=go-api-on-aws%40gpt-engineer-390607.iam.gserviceaccount.com&amp;Signature=N%2BVkYA3pBsFo2RaR7IvLPRIxFi%2BF0eedQ0yrEu4wnQuJ0aeGdUDf7GB0sUoBrWHd5CxHCI6xejHykBHhYKE%2B4j9rH8srmk%2FXIojEro4Le3369jGxEZZOuow6z%2FYY%2BBIOtfWh7l5%2Bk9VghOoiyrSTtwPqjedJkP2PXXguAzA6ZDHp2PxC8gnALFxllz%2FKHxHNlMl1qLQZ1S4GsXk9mKvFmCGYRVHCjYGI6JV1QX19sTR1j6Oml9Jgl8ko2ckmE2Ftcy%2B4eFi5EFKHLx0nJlzbwOlDNJOrzXAbXxZkR6j1D3j9MMME7ouuSfJ4xJSgXEVUhFTPnqaV%2BJY9ixF5aAVwyw%3D%3D">
-    <meta property="og:title" content="DZONYX - Horror Game Studio">
-  <meta name="twitter:title" content="DZONYX - Horror Game Studio">
-  <meta property="og:description" content="DZONYX is a horror game studio creating immersive and disturbing gaming experiences. Explore our games, support us, and share your dark ideas.">
-  <meta name="twitter:description" content="DZONYX is a horror game studio creating immersive and disturbing gaming experiences. Explore our games, support us, and share your dark ideas.">
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DZONYX - Horror Game Studio</title>
+  <meta name="description" content="DZONYX is a horror game studio creating immersive and disturbing gaming experiences." />
+  <link rel="stylesheet" href="style.css" />
 </head>
+<body>
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+  <div class="noise"></div>
+
+  <nav>
+    <a href="#hero" class="logo">DZONYX</a>
+    <ul>
+      <li><a href="#games">Games</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="#donations">Donations</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero" id="hero">
+    <h1>DZONYX</h1>
+    <p>We create horror experiences.</p>
+  </header>
+
+  <!-- GAMES -->
+  <section id="games">
+    <h2>🎮 Our Games</h2>
+    <div class="card-grid">
+
+      <div class="card">
+        <img src="https://placehold.co/600x400/0a0a0a/cc1b1b?text=Game+1" alt="Game 1" />
+        <div class="card-body">
+          <h3>Game Title</h3>
+          <p>A short description of this terrifying game.</p>
+          <div class="store-links">
+            <a href="#" class="store-link steam">🎮 Steam</a>
+            <a href="#" class="store-link epic">🕹️ Epic</a>
+          </div>
+          <a href="#" class="btn">Download</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://placehold.co/600x400/0a0a0a/cc1b1b?text=Game+2" alt="Game 2" />
+        <div class="card-body">
+          <h3>Another Horror</h3>
+          <p>Dare to enter the darkness?</p>
+          <a href="#" class="btn">Download</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2>🧠 About</h2>
+    <p class="about-text">
+      Dzonyx is a horror game studio focused on immersive and disturbing experiences.
+      We push the boundaries of fear through atmospheric design, unsettling narratives,
+      and gameplay that keeps you on edge.
+    </p>
+  </section>
+
+  <!-- NEWS -->
+  <section id="news">
+    <h2>📰 News</h2>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-body">
+          <h3>New Game Announcement</h3>
+          <p>Stay tuned for our upcoming release...</p>
+          <small style="color:var(--text-muted)">2026-03-25</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DONATIONS -->
+  <section id="donations">
+    <h2>💰 Support Us</h2>
+    <p class="about-text">Help us create more horror experiences.</p>
+    <p style="margin-top:1rem;color:var(--text-muted);">Bank account: <strong style="color:var(--text)">RS35170001089853000194</strong></p>
+    <p style="margin-top:1rem;color:var(--primary);font-weight:600;">⚠ All donations are final. No refunds.</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 DZONYX. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
 </html>
