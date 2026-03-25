@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { Newspaper } from 'lucide-react';
 import { format } from 'date-fns';
+import { Button } from '@/components/ui/button';
 
 const News = () => {
   const { data: news, isLoading } = useQuery({
@@ -38,6 +39,15 @@ const News = () => {
                 </div>
                 <h2 className="text-2xl font-bold text-foreground mb-3">{item.title}</h2>
                 <p className="text-muted-foreground whitespace-pre-wrap">{item.content}</p>
+                {(item as any).download_url && (
+                  <div className="mt-4">
+                    <Button asChild variant="outline" size="sm" className="horror-border">
+                      <a href={(item as any).download_url} target="_blank" rel="noopener noreferrer" download>
+                        Download file
+                      </a>
+                    </Button>
+                  </div>
+                )}
               </div>
             </article>
           ))}
