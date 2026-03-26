@@ -5,7 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Shield } from 'lucide-react';
 import AdminGames from '@/components/admin/AdminGames';
 import AdminNews from '@/components/admin/AdminNews';
-import AdminSuggestions from '@/components/admin/AdminSuggestions';
+import AdminSocials from '@/components/admin/AdminSocials';
 import AdminUsers from '@/components/admin/AdminUsers';
 
 const Admin = () => {
@@ -24,12 +24,12 @@ const Admin = () => {
         <TabsList className="grid w-full grid-cols-4 bg-card border border-border">
           <TabsTrigger value="games">Games</TabsTrigger>
           <TabsTrigger value="news">News</TabsTrigger>
-          <TabsTrigger value="suggestions">Suggestions</TabsTrigger>
+          <TabsTrigger value="socials">Socials</TabsTrigger>
           <TabsTrigger value="users">Users</TabsTrigger>
         </TabsList>
         <TabsContent value="games"><AdminGames /></TabsContent>
         <TabsContent value="news"><AdminNews /></TabsContent>
-        <TabsContent value="suggestions"><AdminSuggestions /></TabsContent>
+        <TabsContent value="socials"><AdminSocials /></TabsContent>
         <TabsContent value="users"><AdminUsers /></TabsContent>
       </Tabs>
     </div>

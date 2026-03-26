@@ -90,7 +90,7 @@ const Index = () => {
           {[
             { icon: Newspaper, title: 'Latest News', desc: 'Stay updated with our releases', to: '/news' },
             { icon: Heart, title: 'Support Us', desc: 'Help us create more horror', to: '/donations' },
-            { icon: MessageSquare, title: 'Suggestions', desc: 'Share your dark ideas', to: '/suggestions' },
+            { icon: MessageSquare, title: 'Socials', desc: 'Follow us on social media', to: '/socials' },
           ].map((item, i) => (
             <Link key={i} to={item.to} className="bg-card p-6 rounded-lg horror-border hover-horror transition-all duration-300 text-center group">
               <item.icon className="w-10 h-10 mx-auto mb-3 text-primary group-hover:animate-glitch" />
@@ -102,8 +102,9 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border py-8 px-4 text-center text-sm text-muted-foreground">
+      <footer className="border-t border-border py-8 px-4 text-center text-sm text-muted-foreground space-y-2">
         <p>© {new Date().getFullYear()} DZONYX. All rights reserved.</p>
+        <p>Contact: <a href="mailto:support@dzonyx.com" className="text-primary hover:underline">support@dzonyx.com</a></p>
       </footer>
     </div>
   );

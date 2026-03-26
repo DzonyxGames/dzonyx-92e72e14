@@ -14,7 +14,7 @@ const Navbar = () => {
     { to: '/games', label: 'Games' },
     { to: '/news', label: 'News' },
     { to: '/donations', label: 'Donate' },
-    { to: '/suggestions', label: 'Suggestions' },
+    { to: '/socials', label: 'Socials' },
   ];
 
   const isActive = (path: string) => location.pathname === path;

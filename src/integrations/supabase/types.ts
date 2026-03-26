@@ -128,6 +128,30 @@ export type Database = {
         }
         Relationships: []
       }
+      social_links: {
+        Row: {
+          created_at: string | null
+          display_order: number | null
+          id: string
+          platform: string
+          url: string
+        }
+        Insert: {
+          created_at?: string | null
+          display_order?: number | null
+          id?: string
+          platform: string
+          url: string
+        }
+        Update: {
+          created_at?: string | null
+          display_order?: number | null
+          id?: string
+          platform?: string
+          url?: string
+        }
+        Relationships: []
+      }
       suggestions: {
         Row: {
           created_at: string

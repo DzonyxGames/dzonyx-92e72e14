@@ -11,7 +11,7 @@ import Auth from "./pages/Auth";
 import Games from "./pages/Games";
 import News from "./pages/News";
 import Donations from "./pages/Donations";
-import Suggestions from "./pages/Suggestions";
+import Socials from "./pages/Socials";
 import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 
@@ -32,7 +32,7 @@ const App = () => (
             <Route path="/games" element={<Games />} />
             <Route path="/news" element={<News />} />
             <Route path="/donations" element={<Donations />} />
-            <Route path="/suggestions" element={<Suggestions />} />
+            <Route path="/socials" element={<Socials />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
